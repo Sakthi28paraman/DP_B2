@@ -1,0 +1,330 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "patient",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "disease",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "timestamp",
+				"type": "string"
+			}
+		],
+		"name": "AppointmentFailed",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_icd_c",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_icd_v",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_disease_n",
+				"type": "string"
+			}
+		],
+		"name": "addDisease",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_addr",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_specializations",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_time",
+				"type": "string[]"
+			},
+			{
+				"internalType": "bool",
+				"name": "_isAvailable",
+				"type": "bool"
+			}
+		],
+		"name": "addDoctor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_location",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "_doctorAssigned",
+				"type": "bool"
+			}
+		],
+		"name": "addPatient",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "appointments",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "patient_id",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "disease_id",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "docter_id",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "timestamp",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "timestam",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_docter_id",
+				"type": "address"
+			}
+		],
+		"name": "clash_checking",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "diseases",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "icd_code",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "icd_version",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "disease_name",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "doctors",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "docter_id",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "doctor_name",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "isAvailable",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "dis",
+				"type": "string"
+			}
+		],
+		"name": "doctors_specialization_check",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "patients",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "patient_address",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "patient_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "patient_location",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "patient_age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "gender",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "doctor_assigned",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patient_address",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_disesase_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_timestamp",
+				"type": "string"
+			}
+		],
+		"name": "scheduleAppointment",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]

@@ -1,0 +1,459 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_location",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_symptoms",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string",
+				"name": "_diseaseId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_doctorId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_doctorAssigned",
+				"type": "bool"
+			}
+		],
+		"name": "addPatient",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "appointmentCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "appointments",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "appointment_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "patient_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "disease_id",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "doctor_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "appointmentTimestamp",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_patientId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_diseaseCode",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_appointmentTimestamp",
+				"type": "string"
+			}
+		],
+		"name": "createAppointment",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "diseaseCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "diseaseIdByCode",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "diseases",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "disease_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "disease_name",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "doctorAddressToId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "doctorCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "doctors",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "doctor_address",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "doctor_name",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "isAvailable",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllDoctorDetails",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "doctor_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "doctor_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "specializations",
+						"type": "string[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "isAvailable",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct EHR.Doctor[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_doctorId",
+				"type": "uint256"
+			}
+		],
+		"name": "getAppointmentsForDoctor",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_patientId",
+				"type": "uint256"
+			}
+		],
+		"name": "getPatientDetails",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "patient_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "patient_name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "patient_age",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "gender",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "patient_location",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "symptoms",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string",
+						"name": "disease_id",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "doctor_id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "doctor_assigned",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct EHR.Patient",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "patientCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "patients",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "patient_address",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "patient_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "patient_age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "gender",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "patient_location",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "disease_id",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "doctor_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "doctor_assigned",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bool",
+				"name": "_isAvailable",
+				"type": "bool"
+			}
+		],
+		"name": "updateDoctorAvailability",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
