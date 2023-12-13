@@ -257,6 +257,132 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "_doctor_id",
+				"type": "address"
+			}
+		],
+		"name": "getAllDoctorAppointments",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "patient_id",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "disease_id",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "docter_id",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "timestamp",
+						"type": "string"
+					}
+				],
+				"internalType": "struct EHR.appointment[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllDoctors",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "docter_id",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "doctor_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "specialization",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "timest",
+						"type": "string[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "isAvailable",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct EHR.Doctor[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllPatients",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "patient_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "patient_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "patient_location",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "patient_age",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "gender",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "doctor_assigned",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct EHR.patient[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"

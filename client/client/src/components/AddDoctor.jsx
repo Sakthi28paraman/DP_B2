@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 
-const AddDoctor = () => {
+const AddDoctor = ({state}) => {
   const [result, setResult] = useState(null);
   const [appointments, setAppointments] = useState([]);
 
   const handleAddAppointment = () => {
     const datetimeInput = document.querySelector('#appointmentDatetime');
     
-    // Check if the datetime input has a value
     if (datetimeInput.value) {
       setAppointments([...appointments, datetimeInput.value.trim()]);
-      datetimeInput.value = ''; // Clear the input after adding the appointment
+      datetimeInput.value = '';
     }
   };
 
   const getAppointment = async (e) => {
     e.preventDefault();
+    const {contract,account} = state;
     const DoctorAddress = document.querySelector('#doctorid').value;
     const DoctorName = document.querySelector('#doctorname').value;
     const Specialization = document.querySelector('#Specialization').value.split(',').map(s => s.trim());
@@ -26,7 +26,7 @@ const AddDoctor = () => {
 
     try {
       const res = await fetch("http://localhost:3000/api/ethereum/AddDoctor", {
-        method: "POST", // Change to POST method
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
@@ -34,6 +34,15 @@ const AddDoctor = () => {
       });
 
       const data = await res.json();
+      if(data.status == 200){
+        if(contract && contract.methods){
+          await contract.methods
+          .addDoctor(DoctorAddress, DoctorName, Specialization, Appointments, isAvailable)
+          .send({from:account})
+        }
+      }else{
+        alert("Doctor cannot be added")
+      }
       setResult(data.message);
     } catch (error) {
       console.log(error);

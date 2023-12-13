@@ -3,6 +3,7 @@ import Web3 from 'web3';
 import ABI from './ABI.json';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import '../css/wallet.css'
 
 const WalletConnection = ({saveState}) => {
     const navigate = useNavigate();
@@ -13,11 +14,11 @@ const WalletConnection = ({saveState}) => {
                 const accounts = await window.ethereum.request({
                     method:"eth_requestAccounts"
                 })
-                const contractAddress = "0xB5445afdd204e8EC78B745D7c5Ac08507703B9cD";
+                const contractAddress = "0xD36B6fFE4e52fc3c3d3C476Aeb3416530eFeEe88";
                 const contract = new web3.eth.Contract(ABI,contractAddress);
                 console.log("The Wallet Connection successful"); 
                 saveState({web3:web3,contract:contract,account:accounts[0]})
-                navigate("/view-all-doctors")
+                navigate("/navigate")
             }else{
                 throw new Error;
             }
@@ -25,13 +26,12 @@ const WalletConnection = ({saveState}) => {
                 console.log(err);
         }
     }
-    const navigateAppointment =() =>{
-        navigate('/AddDoctor')
-    }
   return ( 
       <>
-      <button onClick={navigateAppointment}>Get Appointment page</button>
-      <button onClick={connectWallet}>connect wallet</button>
+      <div>
+            <button onClick={connectWallet} className='walletButton' >connect wallet</button>
+      </div>
+      
       
       </>
   )

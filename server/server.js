@@ -10,12 +10,12 @@ app.use(cors());
 app.use(express.json())
 const PORT = 3000;
 const web3 = new Web3("https://neat-fluent-meme.ethereum-goerli.discover.quiknode.pro/478a9345b29f410832fef17ac2c226bf82085f4c/");
-const contractAddress = "0x4FD83B714C9CF04E4AEdE980Ee05a796C4cDc51A";
+const contractAddress = "0xD36B6fFE4e52fc3c3d3C476Aeb3416530eFeEe88";
 const contract = new web3.eth.Contract(ABI,contractAddress);
 
 // const getDoctors = async () => {
 //     try {
-//         const doctorsCount = await contract.methods.doctorCount().call();
+//         const doctorsCount = await contract.methods.doctorCount.call();
 //         const doctorsDetails = []
 
 //         for (let i = 1; i <= doctorsCount; i++) { // Start from 1, not 0
@@ -91,28 +91,30 @@ app.post("/api/ethereum/fixAppointment", async (req, res) => {
     }
 });
 
+app.post("/api/ethereum/RegisterPatient", async (req, res) => {
+    try {
+        const { PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgined } = req.body;
+        const isDoctorAssigned = DoctorAssgined === 'false'
+        console.log(req.body);
+        res.status(200).json({status:200,message:'Patient Registeration Successful',data:{ DoctorAssgined}});
+        // const result = await contract.methods.addPatient(PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgined).send({
+        //     from: '0xE11d568F697eb189660C977E26Be9362e0a483Dc',  // Replace with your sender address
+        // });
+
+        // res.status(200).json({ status: 200, message: 'Patient added successfully', transactionHash: result.transactionHash });
+
+    } catch (err) {
+        res.status(500).json({ status: 500, message: "Error adding Patient", error: err.message });
+        console.error(err);
+    }
+})
 
 app.get("/api/ethereum/getDoctors",async(req,res)=>{
-    try{
-        const doctorsCount = await contract.methods.doctorCount().call();
-        const doctorsDetails = []
-        if(doctorsCount < 0){
-            res.status(404).json({status:404,message:"No Doctor details available"})
-        }
-        for (let i = 1; i <= doctorsCount; i++) { 
-            const doctor = await contract.methods.doctors(i).call();
-            doctorsDetails.push(doctor);
-        }
-        // const doctorList = doctorsDetails.map(({addr,name,avail})=>{
-        //     return {addr,name,avail}
-        // })
-        // console.log(doctorList);
-        // console.log('Doctor Details:');
-        res.status(200).json({status:200,doctorsDetails,message:"Doctor's List"})
-        console.log(doctorsDetails);
-    } catch (err) {
-        res.status(500).json({status:500,message:"No doctor details aavailable"});
-        console.log(err);
+    try {
+        const DoctorDetails = await contract.methods.getAllDoctors().call();
+        res.json({status:200,doctorDetails:DoctorDetails});
+    } catch (error) {
+        res.status(500).json({error:'Error in getting the Doctor Details'});
     }
 })
 
@@ -125,7 +127,7 @@ app.post("/api/ethereum/AddDoctor", async (req, res) => {
         if (isDoctor.doctor_name !== '') {
             return res.status(400).json({ status: 400, message: "Doctor already exists" });
         }
-        await contract.methods.addDoctor(DoctorAddress, DoctorName, Specialization, Appointments, isAvailableBool).send({ from: "0xE11d568F697eb189660C977E26Be9362e0a483Dc" });
+        // await contract.methods.addDoctor(DoctorAddress, DoctorName, Specialization, Appointments, isAvailableBool).send({ from: "0xE11d568F697eb189660C977E26Be9362e0a483Dc" });
 
         res.status(200).json({ status: 200, message: "Doctor added successfully" });
     } catch (err) {
@@ -133,6 +135,17 @@ app.post("/api/ethereum/AddDoctor", async (req, res) => {
         console.error(err);
     }
 });
+
+app.get("/api/ethereum/getPatients",async(req,res)=>{
+    try {
+        const PatientDetails = await contract.methods.getAllPatients().call();
+        console.log(PatientDetails);
+        res.json({status:200,message:"Patient Reterival Successful",patientdeatil:PatientDetails});
+    }
+    catch(err){
+        console.log(err);
+    }
+})
 
 
 

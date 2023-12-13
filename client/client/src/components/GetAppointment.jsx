@@ -5,6 +5,8 @@ const GetAppointment = ({state}) => {
     const [result,setResult] = useState(null);
 
     const getAppointment = async(e)=>{
+
+        const {contract,account} = state;
         e.preventDefault();
         const patientId = document.querySelector('#patientId').value;
         const diseaseId = document.querySelector('#diseaseId').value;
@@ -21,7 +23,20 @@ const GetAppointment = ({state}) => {
                 body:JSON.stringify({dateTime:dateTime,doctorId,patientId,diseaseId})
 
             })
+            console.log(account);
             const data = await res.json()
+
+            if(data.status == 200){
+                if(contract && contract.methods){
+                    await contract.methods
+                    .scheduleAppointment(dateTime,patientId,diseaseId)
+                    .send({from:account})
+                }
+            }
+            else{
+                alert("Appointment fixed");
+            }
+
             setResult(data.message);
         } catch (error) {
             console.log(error);
