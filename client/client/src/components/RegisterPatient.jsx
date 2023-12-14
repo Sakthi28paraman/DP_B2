@@ -17,16 +17,16 @@ const RegisterPatient = ({state}) => {
 
     try{
       const res = await fetch("http://localhost:3000/api/ethereum/RegisterPatient", {
-  method: "POST",
-  headers: {
-    "content-type":"application/json"
-  },
-  body: JSON.stringify({
-    PatientName,
-    PatientAge,
-    PatientGender,
-    PatientLocation,
-    DoctorAssgin,
+       method: "POST",
+        headers: {
+        "content-type":"application/json"
+      },
+      body: JSON.stringify({
+        PatientName,
+        PatientAge,
+        PatientGender,
+        PatientLocation,
+        DoctorAssgin,
   }),
 });
 console.log(account);

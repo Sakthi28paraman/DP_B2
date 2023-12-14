@@ -15,6 +15,9 @@ const NavigationPage = () => {
     const GetPatient = () =>{
       navigate('/getPatient')
     }
+    const AddDoctor = () =>{
+      navigate('/AddDoctor')
+    }
   return (
     <div>
       <button onClick={navigateAppointment} className='AppoButton'>Get Appointment page</button><br />
@@ -22,6 +25,8 @@ const NavigationPage = () => {
       <button onClick={RegisterPatient} className='RegButton'>Register</button><br />
       <br />
       <button onClick={GetPatient} className='PatButton'>Patient List</button><br />
+      <br />
+      <button onClick={AddDoctor} className='PatButton'>Add Doctor</button><br />
       <br />
       <button onClick={getAllDoctors} className='DocButton'>Doctors List</button>
     </div>

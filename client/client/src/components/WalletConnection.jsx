@@ -14,10 +14,11 @@ const WalletConnection = ({saveState}) => {
                 const accounts = await window.ethereum.request({
                     method:"eth_requestAccounts"
                 })
-                const contractAddress = "0xD36B6fFE4e52fc3c3d3C476Aeb3416530eFeEe88";
+                const contractAddress = "0xAeB7e8CC2DE6fcD6cE49896E8FF06eA66b37E344";
                 const contract = new web3.eth.Contract(ABI,contractAddress);
                 console.log("The Wallet Connection successful"); 
                 saveState({web3:web3,contract:contract,account:accounts[0]})
+                // console.log(accounts[0]);
                 navigate("/navigate")
             }else{
                 throw new Error;

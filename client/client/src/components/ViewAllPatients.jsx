@@ -1,54 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const ViewAllPatients = () => {
-
-    const [patient,setPatient] = useState([]);
+    const [patients, setPatients] = useState([]);
     const [error, setError] = useState(null);
 
-    useEffect(()=>{
-        const fetchPatient = async ()=>{
+    useEffect(() => {
+        const fetchPatients = async () => {
             try {
-                const res = await fetch('http://localhost:3000/api/ethereum/getPatients',{
-                    method:'GET',
-                    headers:{
+                const res = await fetch('http://localhost:3000/api/ethereum/getPatients', {
+                    method: 'GET',
+                    headers: {
                         'content-type': 'application/json',
-                    }
+                    },
                 });
                 if (!res.ok) {
                     throw new Error(`Failed to fetch data: ${res.statusText}`);
-                  }
-          
-                  const data = await res.json();
-                  console.log(data);
-          
-                  if (data.status === 200) {
-                    setPatient(data.patientdeatil); // Access the first array in the nested structure
-                  } else {
+                }
+
+                const data = await res.json();
+                console.log(data);
+
+                if (data.status === 200) {
+                    setPatients(data.patientdeatil);
+                } else {
                     setError(`Server error: ${data.message}`);
-                  }
+                }
             } catch (error) {
                 console.log(error);
                 setError(`Error fetching data: ${error.message}`);
             }
-        }
-    fetchPatient();
-    },[]);
+        };
+        fetchPatients();
+    }, []);
 
     if (error) {
         return <div>Error: {error}</div>;
-      }
-    
-  return (
-    <div>
-            {patient.map((patient,index)=>{
+    }
+
+    return (
+        <div>
+            {patients.map((patient, index) => (
                 <div key={index}>
-                    <p>{patient}</p>
+                    <p>
+                        Patient Address: {patient.patient_address}<br />
+                        Patient Name: {patient.patient_name}<br />
+                        Patient Location: {patient.patient_location}<br />
+                        Patient Age: {patient.patient_age}<br />
+                        Gender: {patient.gender}<br />
+                        Doctor Assigned: {patient.doctor_assigned ? 'Yes' : 'No'}
+                    </p>
                 </div>
-            })
+            ))}
+        </div>
+    );
+};
 
-            }
-    </div>
-  )
-}
-
-export default ViewAllPatients
+export default ViewAllPatients;

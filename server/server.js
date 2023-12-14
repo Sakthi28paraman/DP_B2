@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json())
 const PORT = 3000;
 const web3 = new Web3("https://neat-fluent-meme.ethereum-goerli.discover.quiknode.pro/478a9345b29f410832fef17ac2c226bf82085f4c/");
-const contractAddress = "0xD36B6fFE4e52fc3c3d3C476Aeb3416530eFeEe88";
+const contractAddress = "0xAeB7e8CC2DE6fcD6cE49896E8FF06eA66b37E344";
 const contract = new web3.eth.Contract(ABI,contractAddress);
 
 // const getDoctors = async () => {
@@ -77,8 +77,6 @@ app.post("/api/ethereum/fixAppointment", async (req, res) => {
             return res.status(404).json({ status: 404, message: "Patient not found" });
         }
         const doctorAddress = await contract.methods.ṭ(patientAddress, diseaseId, timestamp).send({ from: patientAddress });
-
-        // Check if the appointment was successful
         if (doctorAddress !== '0x0000000000000000000000000000000000000000') {
             res.status(200).json({ status: 200, doctorAddress, message: "Appointment fixed successfully" });
         } else {
@@ -95,14 +93,9 @@ app.post("/api/ethereum/RegisterPatient", async (req, res) => {
     try {
         const { PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgin } = req.body;
         const isDoctorAssigned = DoctorAssgin === 'false'
-        console.log(req.body);
-        res.status(200).json({status:200,message:'Patient Registeration Successful',data:{PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgin}});
-        // const result = await contract.methods.addPatient(PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgined).send({
-        //     from: '0xE11d568F697eb189660C977E26Be9362e0a483Dc',  // Replace with your sender address
-        // });
-
-        // res.status(200).json({ status: 200, message: 'Patient added successfully', transactionHash: result.transactionHash });
-
+        // console.log(req.body);
+        // const patientId = result.events.PatientRegistered.returnValues.patientId;
+        res.status(200).json({status:200,message:'Patient Registeration Successful',data:{PatientName, PatientAge: Number(PatientAge), PatientGender, PatientLocation, DoctorAssgin}});
     } catch (err) {
         res.status(500).json({ status: 500, message: "Error adding Patient", error: err.message });
         console.error(err);
@@ -137,16 +130,26 @@ app.post("/api/ethereum/AddDoctor", async (req, res) => {
     }
 });
 
-app.get("/api/ethereum/getPatients",async(req,res)=>{
+app.get("/api/ethereum/getPatients", async (req, res) => {
     try {
         const PatientDetails = await contract.methods.getAllPatients().call();
-        console.log(PatientDetails);
-        res.json({status:200,message:"Patient Reterival Successful",patientdeatil:PatientDetails});
-    }
-    catch(err){
+        const formattedPatientDetails = PatientDetails.map(patient => ({
+            patient_address: patient.patient_address,
+            patient_name: patient.patient_name,
+            patient_location: patient.patient_location,
+            patient_age: Number(patient.patient_age), // Convert BigInt to number
+            gender: patient.gender,
+            doctor_assigned: patient.doctor_assigned,
+        }));
+
+        console.log(formattedPatientDetails);
+        res.json({ status: 200, message: "Patient Retrieval Successful", patientdeatil: formattedPatientDetails });
+    } catch (err) {
         console.log(err);
+        res.status(500).json({ status: 500, error: "Error fetching patient data" });
     }
-})
+});
+
 
 
 

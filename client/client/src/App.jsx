@@ -21,7 +21,7 @@ const App = () => {
               <Route path='/' element={<WalletConnection saveState={saveState}/>} />
               <Route path='/view-all-doctors' element={<ViewAllDoctors/>}></Route>
               <Route path = '/get-appointment' element={<GetAppointment state={state}/>} />
-              <Route path='/AddDoctor' element={<AddDoctor state={state}/>}/>
+              <Route path='/' element={<AddDoctor state={state}/>}/>
               <Route path='/registerPatient' element={<RegisterPatient state={state} />} />
               <Route path='/navigate' element={<NavigationPage/>}></Route>
               <Route path='/getPatient' element={<ViewAllPatients/>}></Route>
