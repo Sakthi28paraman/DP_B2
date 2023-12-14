@@ -19,7 +19,7 @@ const RegisterPatient = ({state}) => {
       const res = await fetch("http://localhost:3000/api/ethereum/RegisterPatient", {
   method: "POST",
   headers: {
-    "Content-Type": "application/json",
+    "content-type":"application/json"
   },
   body: JSON.stringify({
     PatientName,
@@ -29,10 +29,10 @@ const RegisterPatient = ({state}) => {
     DoctorAssgin,
   }),
 });
-console.log(res);
+console.log(account);
 if (res.ok) {
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   if (data.status === 200) {
     if (contract && contract.methods) {
       await contract.methods
