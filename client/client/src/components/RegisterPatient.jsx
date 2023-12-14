@@ -14,16 +14,6 @@ const RegisterPatient = ({state}) => {
     const PatientLocation = document.querySelector('#patientLocation').value;
     const PatientGender = document.querySelector('input[name="gender"]:checked').value === 'Male' ? 'Male' : 'Female';
     const DoctorAssgin = document.querySelector('input[name="Available"]:checked').value === 'True';
-    // let DoctorAssgin = document.querySelector('input[name="Available"]:checked').value === 'Assigned' ? 'Assigned' : 'Not Assigned';
-    // if(DoctorAssgin == 'Assigned' ){
-    //   DoctorAssgin = true;
-    // }
-    // else{
-    //   DoctorAssgin = false;
-    // }
-
-    // Assigning boolean value based on the condition
-    // const DoctorAssgin = isAssigned; // This will be true if 'Assigned', otherwise false
 
     try{
       const res = await fetch("http://localhost:3000/api/ethereum/RegisterPatient", {
@@ -39,6 +29,7 @@ const RegisterPatient = ({state}) => {
     DoctorAssgin,
   }),
 });
+console.log(res);
 if (res.ok) {
   const data = await res.json();
   console.log(data);
@@ -61,11 +52,11 @@ if (res.ok) {
   console.log(result);
 } else {
   console.error(`Error: ${res.status} - ${res.statusText}`);
-  setResult("Error Occurred");
+  setResult("Error Occurred1");
 }
 }  catch(err){
         console.log(err);
-        setResult("Error Occured");
+        setResult("Error Occured2");
     }
   }
 

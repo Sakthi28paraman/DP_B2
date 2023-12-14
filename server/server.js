@@ -93,10 +93,10 @@ app.post("/api/ethereum/fixAppointment", async (req, res) => {
 
 app.post("/api/ethereum/RegisterPatient", async (req, res) => {
     try {
-        const { PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgined } = req.body;
-        const isDoctorAssigned = DoctorAssgined === 'false'
+        const { PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgin } = req.body;
+        const isDoctorAssigned = DoctorAssgin === 'false'
         console.log(req.body);
-        res.status(200).json({status:200,message:'Patient Registeration Successful',data:{ DoctorAssgined}});
+        res.status(200).json({status:200,message:'Patient Registeration Successful',data:{PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgin}});
         // const result = await contract.methods.addPatient(PatientName, PatientAge, PatientGender, PatientLocation, DoctorAssgined).send({
         //     from: '0xE11d568F697eb189660C977E26Be9362e0a483Dc',  // Replace with your sender address
         // });
@@ -112,6 +112,7 @@ app.post("/api/ethereum/RegisterPatient", async (req, res) => {
 app.get("/api/ethereum/getDoctors",async(req,res)=>{
     try {
         const DoctorDetails = await contract.methods.getAllDoctors().call();
+        console.log(DoctorDetails);
         res.json({status:200,doctorDetails:DoctorDetails});
     } catch (error) {
         res.status(500).json({error:'Error in getting the Doctor Details'});
